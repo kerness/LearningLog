@@ -15,7 +15,8 @@ def topics(request):
 
 def topic(request, topic_id):
     """ Show a single topic an all its entries. """
+    # topic and entries are database queries
     topic = Topic.objects.get(id = topic_id)
     entries = topic.entry_set.order_by('-date_added')
-    context = {'topic': topic, 'entiries': entries}
+    context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/topic.html', context)
